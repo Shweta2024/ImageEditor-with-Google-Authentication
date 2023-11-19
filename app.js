@@ -11,6 +11,7 @@ dotenv.config()
 
 const app = express()
 
+app.use(express.static('public'))
 app.set('view engine', 'ejs')
 mongoose.connect(process.env.DB_CONNECTION_STRING)
 
