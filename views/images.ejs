@@ -1,0 +1,13 @@
+<h1>All Images</h1>
+<% if (images.length > 0) { %>
+<ul>
+    <% images.forEach(image => { %>
+    <li>
+        <h3><%= image.name %></h3>
+        <img src="data:<%= image.contentType %>;base64,<%= image.data.toString('base64') %>" alt="<%= image.name %>">
+    </li>
+    <% }); %>
+</ul>
+<% } else { %>
+<p>No images found</p>
+<% } %>
