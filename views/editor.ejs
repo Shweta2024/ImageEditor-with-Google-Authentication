@@ -1,32 +1,41 @@
 <%- include('partials/header') %>
-<!-- Add this in your HTML file -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
 
-
+<!-- log out button -->
 <div class="card-body">
     <a class="btn btn-secondary btn-sm" href='/logout' role="button">
         Log Out
     </a>
 </div>
 
-<input type="file" id="inputImage">
-<div>
-    <img src="#" id="croppedImage" alt="Cropped Image">
+<!-- button to navigate to image gallery -->
+<div class="card-body">
+    <a class="btn btn-secondary btn-sm" href='/image/gallery' role="button">
+        Image Gallery
+    </a>
 </div>
-<button id="cropButton">Crop Image</button>
+
+
+<!-- upload image -->
+<input enctype="multipart/form-data" type="file" id="inputImage" name="image">
+<div>
+    <img src="" id="croppedImage">
+</div>
+
+<!-- download the cropped image -->
+<button id="downloadButton">Download</button>
 
 
 <script>
+
+    // use cropper to get the coordinates of the image
     const input = document.getElementById('inputImage');
     const cropper = new Cropper(document.getElementById('croppedImage'), {
-        aspectRatio: 1, // Set your desired aspect ratio
+        aspectRatio: 1, 
         viewMode: 1,
         zoomable: false,
         crop(event) {
-            // Retrieve cropping data when the user finishes cropping
+            // retrive the coordinates
             const { x, y, width, height } = event.detail;
-            // You may want to display these values to the user or send them to the server
         },
     });
 
@@ -41,36 +50,15 @@
         }
     });
 
- document.getElementById('cropButton').addEventListener('click', () => {
-    const cropData = cropper.getData(); // Get the current cropping data
+    // download the cropped image on click of Download button
+    document.getElementById('downloadButton').addEventListener('click', async () => {
+        const a = document.createElement('a');
+        a.href = cropper.getCroppedCanvas().toDataURL('image/jpeg')
+        a.download = new Date().getTime();
+        a.click()
 
-    fetch('/upload', {
-      method: 'POST',
-      body: JSON.stringify({
-        image: cropper.getImageData(),
-        cropX: cropData.x,
-        cropY: cropData.y,
-        cropWidth: cropData.width,
-        cropHeight: cropData.height,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // Parse the JSON response
-    })
-        .then((data) => {
-            // Handle the parsed response data here
-            console.log('Server response:', data);
-            // Perform actions based on the server response
-            // For instance, update UI, show a message, or trigger another action
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            // Handle errors such as network issues or server errors
-        });
-    })
+        // uncomment to get redirected to the '/gallery' route after downloading image
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
+        // window.location.href = '/image/gallery';
+    });
 </script>

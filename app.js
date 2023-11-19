@@ -8,6 +8,7 @@ const authRoute = require('./routes/auth')
 const imageRoute = require('./routes/image')
 const ejs = require('ejs')
 require('./passport-config')
+
 const PORT = process.env.PORT || 5000
 dotenv.config()
 
