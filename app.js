@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const dotenv = require('dotenv')
 const session = require('express-session')
+const loginLogoutRoute = require('./routes/index')
 const authRoute = require('./routes/auth')
+const imageRoute = require('./routes/image')
 const ejs = require('ejs')
 require('./passport-config')
 const PORT = process.env.PORT || 5000
@@ -24,7 +26,8 @@ app.use(passport.initialize()) // initialize is a function inside passport, it s
 app.use(passport.session())
 
 app.use('/auth/google', authRoute)
-app.use('/', require('./routes/index'))
+app.use('/', loginLogoutRoute)
+app.use('/image', imageRoute)
 
 app.listen(PORT, (req, res) => {
     console.log(`server started at port: ${PORT}`)

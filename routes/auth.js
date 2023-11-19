@@ -13,7 +13,7 @@ router.get('/',
 // callback route once user has authenticated successfully
 router.get('/callback',
     passport.authenticate('google', {
-        successRedirect: '/editor', // give access to editor route
+        successRedirect: '/image/editor', // give access to editor route
         failureRedirect: '/' // back to login screen if there is a failure
 }))
 
