@@ -1,5 +1,8 @@
 <%- include('partials/header') %>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+<!-- Add this in your HTML file -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+
 
 <div class="card-body">
     <a class="btn btn-secondary btn-sm" href='/logout' role="button">
@@ -7,13 +10,67 @@
     </a>
 </div>
 
-<!-- <div class="form-group container">
-    <label for="file-input">Upload an Image</label>
-    <input class="form-control" type="file" id="file-input" name="filename" required accept="image"> 
-</div> -->
+<input type="file" id="inputImage">
+<div>
+    <img src="#" id="croppedImage" alt="Cropped Image">
+</div>
+<button id="cropButton">Crop Image</button>
 
 
-<form action="/image/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="image">
-    <button type="submit">Upload</button>
-</form>
+<script>
+    const input = document.getElementById('inputImage');
+    const cropper = new Cropper(document.getElementById('croppedImage'), {
+        aspectRatio: 1, // Set your desired aspect ratio
+        viewMode: 1,
+        zoomable: false,
+        crop(event) {
+            // Retrieve cropping data when the user finishes cropping
+            const { x, y, width, height } = event.detail;
+            // You may want to display these values to the user or send them to the server
+        },
+    });
+
+    input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                cropper.replace(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+ document.getElementById('cropButton').addEventListener('click', () => {
+    const cropData = cropper.getData(); // Get the current cropping data
+
+    fetch('/upload', {
+      method: 'POST',
+      body: JSON.stringify({
+        image: cropper.getImageData(),
+        cropX: cropData.x,
+        cropY: cropData.y,
+        cropWidth: cropData.width,
+        cropHeight: cropData.height,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the JSON response
+    })
+        .then((data) => {
+            // Handle the parsed response data here
+            console.log('Server response:', data);
+            // Perform actions based on the server response
+            // For instance, update UI, show a message, or trigger another action
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Handle errors such as network issues or server errors
+        });
+    })
+</script>
