@@ -1,3 +1,5 @@
+> Demo Video : [link](https://youtu.be/O-HTfYHEhiY?si=SBz55cXcBG1jZfZT)
+
 ## How to run the project on your system?
 
 
@@ -36,7 +38,7 @@ NOTE: Make sure to add ``DB_CONNECTION_STRING``,
 <h3>Logic:</h3>
 <hr>
 
-- If user isn't logged-in, then they won't be able to access the ```Editor``` and the ```Gallery```, hence are redirected back to the ```logIn screee``` if unauthorized.
+- If the user isn't logged in, then they won't be able to access the ```Editor``` and the ```Gallery```, hence are redirected back to the ```logIn screen``` if unauthorized.
 
 - Once the user successfully log-in, they can access the ```Editor```:- 
         
@@ -51,7 +53,9 @@ NOTE: Make sure to add ``DB_CONNECTION_STRING``,
 <h3>Tech Stack Used:</h3>
 <hr>
 
-- Backend: Node.j, Express.js and Mongoose.
+- Backend: Node.js, Express.js and Mongoose.
 - Database: MongoDB.
 - Frontend: HTML, CSS, EJS, and JavaScript.
 - Design: Bootstrap.
+- Authentication: passport-google-oauth20, passportjs and express-session.
+- Cropping Image: Cropperjs
