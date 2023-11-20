@@ -16,23 +16,26 @@
     
     
     <div class="imageConatiner">
-        <form>
-            <label for="inputImage">
-                <div class="uploadBox">
-                    <input enctype="multipart/form-data" type="file" id="inputImage" name="image" style="display:none;">
-                    <!-- upload icon -->
-                    <i class="fas fa-upload fa-2x">Upload</i>
-                </div>
-            </label>
-        </form>
-        <!-- button to save image to gallery -->
-            <div class="save-button-container">
-                <button class="btn btn-secondary btn-sm save">Save to Gallery</button>
+        <form  action="/image/editor" method="POST" enctype="multipart/form-data">
+            <div class = "upload-container">
+                <label for="inputImage">
+                    <div class="uploadBox">
+                        <!-- upload an image to crop -->
+                        <input enctype="multipart/form-data" type="file" id="inputImage" name="image" style="display:none;">
+                        <!-- upload icon -->
+                        <i class="fas fa-upload fa-2x">Upload</i>
+                    </div>
+                </label>
             </div>
+            <!-- button to save image to gallery -->
+            <div class="save-button-container">
+                <button type="submit" class="btn btn-secondary btn-sm">Save to Gallery</button>
+            </div>
+        </form>
     </div>
     
     
-    <div>
+    <div class="preview">
         <img src="" id="croppedImage">
     </div>
     
