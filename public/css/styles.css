@@ -1,3 +1,4 @@
+/* style for login screen */
 .google-login-container{
     width: 500px;
         margin: auto;
@@ -26,6 +27,8 @@
 
 }
 
+
+/* style for editor screen */
 .upload-container{
     width: 250px;
     height: 180px;
@@ -58,6 +61,7 @@
 }
 
 
+/* style image preivew on crop */
 .preivew-container {
     width: 400px;
     height: 300px;
@@ -88,6 +92,7 @@
 }
 
 
+/* style gallery screen */
 .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

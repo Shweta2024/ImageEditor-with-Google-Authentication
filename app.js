@@ -1,3 +1,4 @@
+// include required dependencies
 const express = require('express')
 const mongoose = require('mongoose')
 const passport = require('passport')
@@ -17,8 +18,12 @@ app.use(express.json())
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
+
+// connect to DB
 mongoose.connect(process.env.DB_CONNECTION_STRING)
 
+
+// use session & initialize passport
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -27,9 +32,12 @@ app.use(session({
 app.use(passport.initialize()) // initialize is a function inside passport, it set some of the basics
 app.use(passport.session())
 
+
+// use all routes
 app.use('/auth/google', authRoute)
 app.use('/', loginLogoutRoute)
 app.use('/image', imageRoute)
+
 
 app.listen(PORT, (req, res) => {
     console.log(`server started at port: ${PORT}`)
