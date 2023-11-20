@@ -1,3 +1,31 @@
+.google-login-container{
+    width: 500px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5rem;
+}
+
+
+.login-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.login-heading{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.login-desc{
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
 .upload-container{
     width: 250px;
     height: 180px;
