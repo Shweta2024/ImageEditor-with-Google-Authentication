@@ -1,28 +1,44 @@
 <%- include('partials/header') %>
-
-<!-- log out button -->
-<div class="card-body">
-    <a class="btn btn-secondary btn-sm" href='/logout' role="button">
-        Log Out
-    </a>
-</div>
-
-<!-- button to navigate to image gallery -->
-<div class="card-body">
-    <a class="btn btn-secondary btn-sm" href='/image/gallery' role="button">
-        Image Gallery
-    </a>
-</div>
-
-
-<!-- upload image -->
-<input enctype="multipart/form-data" type="file" id="inputImage" name="image">
-<div>
-    <img src="" id="croppedImage">
-</div>
-
-<!-- download the cropped image -->
-<button id="downloadButton">Download</button>
+<body>
+    <!-- log out button -->
+    <div class="card-body">
+        <a class="btn btn-secondary btn-sm" href='/logout' role="button">
+            Log Out
+        </a>
+    </div>
+    
+    <!-- button to navigate to image gallery -->
+    <div class="card-body">
+        <a class="btn btn-secondary btn-sm" href='/image/gallery' role="button">
+            Image Gallery
+        </a>
+    </div>
+    
+    
+    <div class="imageConatiner">
+        <form>
+            <label for="inputImage">
+                <div class="uploadBox">
+                    <input enctype="multipart/form-data" type="file" id="inputImage" name="image" style="display:none;">
+                    <!-- upload icon -->
+                    <i class="fas fa-upload fa-2x">Upload</i>
+                </div>
+            </label>
+        </form>
+        <!-- button to save image to gallery -->
+            <div class="save-button-container">
+                <button class="btn btn-secondary btn-sm save">Save to Gallery</button>
+            </div>
+    </div>
+    
+    
+    <div>
+        <img src="" id="croppedImage">
+    </div>
+    
+    <!-- download the cropped image -->
+    <button id="downloadButton">Download</button>
+</body>
 
 
 <script>

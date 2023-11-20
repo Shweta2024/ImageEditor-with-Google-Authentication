@@ -8,15 +8,15 @@ const authRoute = require('./routes/auth')
 const imageRoute = require('./routes/image')
 const ejs = require('ejs')
 require('./passport-config')
-
 const PORT = process.env.PORT || 5000
 dotenv.config()
 
 const app = express()
-app.use(express.json())
 
-app.use(express.static('public'))
+app.use(express.json())
 app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
 mongoose.connect(process.env.DB_CONNECTION_STRING)
 
 app.use(session({

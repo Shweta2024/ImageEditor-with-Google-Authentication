@@ -1,0 +1,26 @@
+.imageConatiner form{
+    width: 400px;
+    height: 300px;
+    /* border: 1px solid black; */
+    margin: auto;
+    background-color: #eceef2;
+    box-shadow: 5px 5px 10px rgba(0,0,0,3);
+    display: flex;
+    justify-content: center;
+}
+
+.uploadBox{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.save-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}

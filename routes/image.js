@@ -12,11 +12,12 @@ router.post('/editor', isLoggedIn, async (req, res) => {
         contentType: mimetype,
     });
     await newImage.save();
+    console.log("saved")
 })
 
 
 // get all the images from db and display them
-router.get('/gallery', isLoggedIn , async (req, res) => {
+router.get('/gallery' , async (req, res) => {
     const images = await Image.find()
     res.render('images', { images });
 
@@ -24,7 +25,7 @@ router.get('/gallery', isLoggedIn , async (req, res) => {
 
 
 // successfull redirect to editor route 
-router.get('/editor', isLoggedIn, (req, res) => {
+router.get('/editor', (req, res) => {
     res.render('editor')
 })
 
