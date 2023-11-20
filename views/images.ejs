@@ -2,14 +2,18 @@
 
 <h1>Image Gallery</h1>
 <% if (images.length > 0) { %>
-    <div class="image-container user-cards">
-        <div class="image-item card">
-            <% images.forEach(image => { %>
-                    <p><%= image.name %></p>
-                        <img class="img" src="data:<%= image.contentType %>;base64,<%= image.data.toString('base64') %>" alt="<%= image.name %>">
-            <% }); %>
+
+<div class="image-grid">
+    <% images.forEach(image => { %>
+    <div class="card">
+        <div class="card-content">
+            <p class="image-name"><%= image.name %></p>
+            <img src="data:<%= image.contentType %>;base64,<%= image.data.toString('base64') %>"
+                alt="<%= image.name %>">
         </div>
     </div>
+        <% }); %>
+</div>
 <% } else { %>
 <p>No images found</p>
 <% } %>
