@@ -10,7 +10,7 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
 
-router.post('/editor', upload.single('image') , async (req, res) => {
+router.post('/editor', isLoggedIn, upload.single('image') , async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No files were uploaded.')
     }
@@ -28,7 +28,7 @@ router.post('/editor', upload.single('image') , async (req, res) => {
 
 
 // get all the images from db and display them
-router.get('/gallery', async (req, res) => {
+router.get('/gallery', isLoggedIn, async (req, res) => {
     const images = await Image.find()
     res.render('images', { images })
 
@@ -36,7 +36,7 @@ router.get('/gallery', async (req, res) => {
 
 
 // successfull redirect to editor route 
-router.get('/editor', (req, res) => {
+router.get('/editor', isLoggedIn, (req, res) => {
     res.render('editor', { text: '' })
 })
 

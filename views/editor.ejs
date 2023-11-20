@@ -1,19 +1,5 @@
 <%- include('partials/header') %>
 <body>
-    <!-- log out button -->
-    <!-- <div class="card-body">
-        <a class="btn btn-secondary btn-sm" href='/logout' role="button">
-            Log Out
-        </a>
-    </div> -->
-    
-    <!-- button to navigate to image gallery -->
-    <div class="card-body">
-        <a class="btn btn-secondary btn-sm" href='/image/gallery' role="button">
-            Image Gallery
-        </a>
-    </div>
-    
     
     <div class="imageConatiner">
         <form  action="/image/editor" method="POST" enctype="multipart/form-data">
@@ -30,19 +16,20 @@
             <!-- button to save image to gallery -->
             <div class="save-button-container">
                 <button type="submit" class="btn btn-secondary btn-sm">Save to Gallery</button>
+                <button id="downloadButton" class="btn btn-secondary btn-sm">Download</button>
             </div>
         </form>
     </div>
     
-    
+    <!-- download the cropped image -->
+   
     <!-- <div class="preview-container"> -->
         <div class="preview">
             <img src="" id="croppedImage">
         </div>
     <!-- </div> -->
     
-    <!-- download the cropped image -->
-    <button id="downloadButton">Download</button>
+    
 </body>
 
 
@@ -56,30 +43,26 @@
         zoomable: false,
         crop(event) {
             // retrive the coordinates
-            const { x, y, width, height } = event.detail;
+            const { x, y, width, height } = event.detail
         },
-    });
+    })
 
     input.addEventListener('change', (e) => {
-        const file = e.target.files[0];
+        const file = e.target.files[0]
         if (file) {
-            const reader = new FileReader();
+            const reader = new FileReader()
             reader.onload = (event) => {
-                cropper.replace(event.target.result);
-            };
-            reader.readAsDataURL(file);
+                cropper.replace(event.target.result)
+            }
+            reader.readAsDataURL(file)
         }
-    });
+    })
 
     // download the cropped image on click of Download button
     document.getElementById('downloadButton').addEventListener('click', async () => {
-        const a = document.createElement('a');
+        const a = document.createElement('a')
         a.href = cropper.getCroppedCanvas().toDataURL('image/jpeg')
-        a.download = new Date().getTime();
+        a.download = new Date().getTime()
         a.click()
-
-        // uncomment to get redirected to the '/gallery' route after downloading image
-        // await new Promise((resolve) => setTimeout(resolve, 2000));
-        // window.location.href = '/image/gallery';
-    });
+    })
 </script>

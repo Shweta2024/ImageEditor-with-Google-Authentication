@@ -1,6 +1,6 @@
 .upload-container{
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 180px;
     /* border: 1px solid black; */
     margin: auto;
     background-color: #eceef2;
@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
 }
+
 
 .uploadBox{
     width: 100%;
@@ -18,12 +19,16 @@
     color: #6c757d;
 }
 
+
 .save-button-container{
     display: flex;
+    flex-direction: row;
+    gap:2rem;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
 }
+
 
 .preivew-container {
     width: 400px;
@@ -37,7 +42,6 @@
 }
 
 
-
 .preview img{
     display: flex;
     /* margin: auto; */
@@ -45,6 +49,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .preview {
     width: 800px;
     height: 500px;
