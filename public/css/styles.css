@@ -1,6 +1,6 @@
 .upload-container{
-    width: 400px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     /* border: 1px solid black; */
     margin: auto;
     background-color: #eceef2;
@@ -23,4 +23,33 @@
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+}
+
+.preivew-container {
+    width: 400px;
+    height: 300px;
+    /* border: 1px solid black; */
+    margin: auto;
+    background-color: #eceef2;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 3);
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.preview img{
+    display: flex;
+    /* margin: auto; */
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.preview {
+    width: 800px;
+    height: 500px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

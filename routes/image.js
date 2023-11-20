@@ -21,6 +21,9 @@ router.post('/editor', upload.single('image') , async (req, res) => {
     newImage.data = req.file.buffer
     newImage.contentType = req.file.mimetype
     await newImage.save();
+    res.redirect('/image/gallery')
+    // res.render('editor',
+    //     { text: `${newImage.name} successfully saved to Gallery! Click on 'Image Gallery to view all the images.'` })
 })
 
 
@@ -34,7 +37,7 @@ router.get('/gallery', async (req, res) => {
 
 // successfull redirect to editor route 
 router.get('/editor', (req, res) => {
-    res.render('editor')
+    res.render('editor', { text: '' })
 })
 
 
